@@ -1,0 +1,3 @@
+use_mypkg/build/
+mypkg/build
+use_mypkg/CMakeUserPresets.json
