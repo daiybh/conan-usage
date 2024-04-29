@@ -1,0 +1,6 @@
+[requires]
+mypkg/1.0
+
+[generators]
+CMakeDeps
+CMakeToolchain
