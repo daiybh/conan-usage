@@ -1,0 +1,4 @@
+myloglib/test_package/build/
+use_myloglib/build/
+myloglib/build/
+CMakeUserPresets.json
