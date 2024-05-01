@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "memory": "cpp",
+        "atomic": "cpp",
+        "mutex": "cpp",
+        "xstring": "cpp",
+        "initializer_list": "cpp",
+        "functional": "cpp",
+        "xtr1common": "cpp"
+    }
+}

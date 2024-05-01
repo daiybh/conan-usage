@@ -1,9 +1,0 @@
-{
-    "version": 4,
-    "vendor": {
-        "conan": {}
-    },
-    "include": [
-        "F:\\Codes\\Simplylive_project\\BE14\\use_conan_log\\build\\CMakePresets.json"
-    ]
-}

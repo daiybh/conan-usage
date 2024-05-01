@@ -4,9 +4,9 @@ add_definitions(-DUNICODE -D_UNICODE)
 
 project(PackageTest CXX)
 
-find_package(myloglib CONFIG REQUIRED)
+find_package(loglib CONFIG REQUIRED)
 
 
 
 add_executable(example src/example.cpp)
-target_link_libraries(example myloglib::myloglib)
+target_link_libraries(example loglib::loglib)
