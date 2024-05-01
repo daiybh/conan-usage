@@ -11,6 +11,7 @@ int main() {
     {
         logger->debug("hello world debug {}",i);
         logger->error("hello world {}",i);
+        logger->info("fuck");
     }    
     logger->debug("Over here");
     return 0;

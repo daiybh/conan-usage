@@ -35,49 +35,55 @@ namespace SimplyLive
 		template <typename T, typename... Args>
 		void debug2(const T *fmt, Args &&...args)
 		{
-			auto x=std::vformat(fmt, std::forward<Args>(args)...);
+			auto x = std::vformat(fmt, std::forward<Args>(args)...);
 			log(Level::debug, x);
 		}
 		template <typename... Args>
 		inline void debug(const std::format_string<Args...> fmt, Args &&...args)
 		{
-			auto x=  std::vformat(fmt.get(), std::make_format_args(args...)) ;
+			auto x = std::vformat(fmt.get(), std::make_format_args(args...));
 			log(Level::debug, x);
 		}
 
 		void debug(const std::string_view fmt) const { log(Level::debug, fmt); }
 		void debug(const std::wstring_view fmt) const { log(Level::debug, fmt); }
 
-		template <typename T, typename... Args>
-		void info(const T *fmt, Args &&...args) { log(Level::info, std::vformat(fmt, std::forward<Args>(args)...)); }
+		template <typename... Args>
+		void info(const std::format_string<Args...> fmt, Args &&...args)
+		{
+			auto x = std::vformat(fmt.get(), std::make_format_args(args...));
+			log(Level::info, x);
+		}
 
 		void info(const std::string_view fmt) const { log(Level::info, fmt); }
 		void info(const std::wstring_view fmt) const { log(Level::info, fmt); }
 
-		template <typename T, typename... Args>
-		void warn(const T *fmt, Args &&...args) { log(Level::warn, std::vformat(fmt, std::forward<Args>(args)...)); }
+		template <typename... Args>
+		void warn(const std::format_string<Args...> fmt, Args &&...args)
+		{
+			auto x = std::vformat(fmt.get(), std::make_format_args(args...));
+			log(Level::warn, x);
+		}
 
 		void warn(const std::string_view fmt) const { log(Level::warn, fmt); }
 		void warn(const std::wstring_view fmt) const { log(Level::warn, fmt); }
 
-		template <typename T, typename... Args>
-		void error3(const T *fmt, Args &&...args) 
-		{ 
-			auto x=std::vformat(fmt, std::forward<Args>(args)...);
-			log(Level::error, x); 
-		}
 		template <typename... Args>
 		inline void error(const std::format_string<Args...> fmt, Args &&...args)
 		{
-			auto x=  std::vformat(fmt.get(), std::make_format_args(args...)) ;
+			auto x = std::vformat(fmt.get(), std::make_format_args(args...));
 			log(Level::error, x);
 		}
 
 		void error(const std::string_view fmt) const { log(Level::error, fmt); }
 		void error(const std::wstring_view fmt) const { log(Level::error, fmt); }
 
-		template <typename T, typename... Args>
-		void fatal(const T *fmt, Args &&...args) { log(Level::fatal, std::vformat(fmt, std::forward<Args>(args)...)); }
+		template <typename... Args>
+		void fatal(const std::format_string<Args...> fmt, Args &&...args)
+		{
+			auto x = std::vformat(fmt.get(), std::make_format_args(args...));
+			log(Level::fatal, x);
+		}
 
 		void fatal(const std::string_view fmt) const { log(Level::fatal, fmt); }
 		void fatal(const std::wstring_view fmt) const { log(Level::fatal, fmt); }
