@@ -4,7 +4,7 @@ from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 
 class myloglibRecipe(ConanFile):
     name = "myloglib"
-    version = "1.0"
+    version = "1.1"
     package_type = "library"
 
     # Optional metadata
@@ -16,13 +16,18 @@ class myloglibRecipe(ConanFile):
 
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False], "fPIC": [True, False]}
-    default_options = {"shared": False, "fPIC": True}
+    options = {"shared": [True, False], 
+               "fPIC": [True, False],
+               "unicode": [True, False]
+               }
+    default_options = {"shared": False, 
+                       "fPIC": True,
+                       'unicode': True}
 
     # Sources are located in the same place as this recipe, copy them to the recipe
     exports_sources = "CMakeLists.txt", "src/*", "include/*"
     
-    requires = "spdlog/1.14.0"
+      
     def config_options(self):
         if self.settings.os == "Windows":
             self.options.rm_safe("fPIC")

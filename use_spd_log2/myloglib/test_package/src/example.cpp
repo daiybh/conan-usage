@@ -1,18 +1,18 @@
-#include "myloglib.h"
 #include <vector>
 #include <string>
+#include "logLib.h"
+#include <format>
 
 int main() {
-    
+    printf("hello world\n");
+
+    SimplyLive::Logger* logger=new SimplyLive::Logger(L"c:\\logs\\aa.log");
     for(int i=0;i<10;i++)
-    {MyLogLib::debug("c:\\logs\\aa.log", 123, "hello world");
-    MyLogLib::error("c:\\logs\\aa.log", 123, "hello world");}
-    myloglib();
-
-    std::vector<std::string> vec;
-    vec.push_back("test_package");
-
-    myloglib_print_vector(vec);
+    {
+        logger->debug("hello world debug {}",i);
+        logger->error("hello world {}",i);
+    }    
+    logger->debug("Over here");
     return 0;
 
 }
