@@ -1,14 +1,13 @@
 function conan_buildLib {
-    echo "buildLibs..."
+    echo "buildLibs... $PWD"
     conan create . -s build_type=Debug
     if($lastExitCode -eq 0){
         conan create . -s build_type=Release        
-    }        
-    echo $lastExitCode
+    }            
 }
 
 function conan_buildApp{
-    echo "buildApps..."
+    echo "buildApps...  $PWD"
     rmdir build -Recurse -Force
     conan install . --output-folder=build --build=missing -s build_type=Debug
     if($lastExitCode -ne 0){
@@ -29,32 +28,30 @@ function conan_buildApp{
     cmake --build --preset="conan-release"    
 }
 
-function buildOne {
-    param ($path,$isApp)
-    pushd .
-    cd $path
-    if($isApp){
-        conan_buildApp
-    }else {
-        conan_buildLib
-    }
-    popd
-}
 
 function buildAll{
     param($isApp)
     pushd .
+    $destFolder = ".\Libraries"
+
     if($isApp){
-        cd .\Apps
+        $destFolder = ".\Apps"
     }
-    else {
-        cd .\Libraries
-    }
+    
     ##遍历子目录
-    $allSubdirs = Get-ChildItem -Directory
+    $allSubdirs = Get-ChildItem -path $destFolder  -Directory
      foreach ($currentItemName in $allSubdirs) {
         echo "build [$currentItemName]..."
-        buildOne $currentItemName $isApp;
+
+        pushd .
+        cd $currentItemName
+        if($isApp){
+            conan_buildApp
+        }else {
+            conan_buildLib
+        }
+        popd
+        
         if($lastExitCode -ne 0){
             echo "****************************"
             echo "build [$currentItemName] failed. code: $lastExitCode"            
@@ -62,7 +59,7 @@ function buildAll{
             break
         }     
     }     
-    echo "buildLibs over."
+    echo "build $destFolder  over."
     popd
 }
 
