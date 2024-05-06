@@ -19,7 +19,11 @@ class app_myloglibRecipe(ConanFile):
 
     # Sources are located in the same place as this recipe, copy them to the recipe
     exports_sources = "CMakeLists.txt", "src/*"
-    requires = "loglib/1.1"
+
+    def requirements(self):
+        self.requires("loglib/1.3")
+        self.requires("lib_headeronly/0.1")
+
     def layout(self):
         cmake_layout(self)
 

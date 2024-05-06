@@ -4,7 +4,7 @@ from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 
 class loglibRecipe(ConanFile):
     name = "loglib"
-    version = "1.1"
+    version = "1.5"
     package_type = "library"
 
     # Optional metadata
