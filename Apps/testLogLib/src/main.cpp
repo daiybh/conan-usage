@@ -2,6 +2,7 @@
 #include <string>
 #include "logLib.h"
 #include "lib_headeronly.h"
+#include <iostream>
 int main()
 {
     SimplyLive::Logger* logger=new SimplyLive::Logger(L"c:\\logs\\use_mylogAPP.log");
