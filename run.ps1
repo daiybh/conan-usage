@@ -9,11 +9,11 @@ function conan_buildLib {
 function conan_buildApp{
     echo "buildApps...  $PWD"
     rmdir build -Recurse -Force
-    conan install . --output-folder=build --build=missing -s build_type=Debug
+    conan install . --output-folder=build\win --build=missing -s build_type=Debug
     if($lastExitCode -ne 0){
         return
     }
-    conan install . --output-folder=build --build=missing -s build_type=Release
+    conan install . --output-folder=build\win --build=missing -s build_type=Release
     if($lastExitCode -ne 0){
         return
     }

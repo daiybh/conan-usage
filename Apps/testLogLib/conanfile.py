@@ -21,7 +21,7 @@ class app_myloglibRecipe(ConanFile):
     exports_sources = "CMakeLists.txt", "src/*"
 
     def requirements(self):
-        self.requires("loglib/1.3")
+        self.requires("loglib/1.5")
         self.requires("lib_headeronly/0.1")
 
     def layout(self):
