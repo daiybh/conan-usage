@@ -1,3 +1,4 @@
+#!/bin/bash
 function conan_buildLib() {
     echo "buildLibs... $(pwd)"
     conan create . -s build_type=Debug
@@ -8,23 +9,24 @@ function conan_buildLib() {
 function conan_buildApp() {
     echo "buildApps...  $PWD"
     rm -rf build
+
     conan install . --output-folder=build/linux --build=missing -s build_type=Debug
     if [ $? -ne 0 ]; then
         return
     fi
+    cmake --preset conan-debug
+    if [ $? -ne 0 ]; then
+        return  
+    fi
+    cmake --build . --preset="conan-debug"    
+    if [ $? -ne 0 ]; then
+        return
+    fi
+    
     conan install . --output-folder=build/linux --build=missing -s build_type=Release
     if [ $? -ne 0 ]; then
         return
     fi
-    cmake --preset conan-debug
-    if [ $? -eq 0 ]; then
-        cmake --build . --preset="conan-debug"    
-        if [ $? -ne 0 ]; then
-            return
-        fi    
-    fi
-    
-    
     cmake --preset conan-release
     if [ $? -ne 0 ]; then
         return
