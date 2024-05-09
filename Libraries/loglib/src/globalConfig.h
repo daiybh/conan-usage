@@ -24,8 +24,8 @@ public:
 		const char* homedir = getenv("HOME");
 		if (homedir == nullptr)
 			homedir = getpwuid(getuid())->pw_dir;
-		m_configPath = fmt::format(R"({}/Config/LogConfig.json)", homedir);
-		relativePath = fmt::format(R"({}/Logs/)", homedir);
+		m_configPath = std::format(R"({}/Config/LogConfig.json)", homedir);
+		relativePath = std::format(R"({}/Logs/)", homedir);
 #else
 		wchar_t strModuleFileName[260];
 		wchar_t strPath[260];
